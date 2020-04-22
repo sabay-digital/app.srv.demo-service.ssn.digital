@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Redirecting...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <form id="frm-redirect" method="post">
+        {{range .Payload}}
+        <input type="hidden" name="{{.Key}}" value="{{.Value}}">
+        {{end}}
+    </form>
+
+    
+    <script>
+        $(function() {
+            $('#frm-redirect').attr('action', '{{.RedirectURL}}').submit();
+        });
+    </script>
+</body>
+</html>

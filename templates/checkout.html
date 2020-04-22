@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Checkout</h1>
+            <br>
+        </div>
+        <div class="container">
+            <h2 class="subtitle">Pre-authorised Payment Options</h2>
+            {{range .ExistingPreauth}}
+            <div class="container">
+                <form action="{{.Request_URL}}" method="post">
+                    <input type="hidden" name="hash" value="{{.Hash}}">
+                    <input type="hidden" name="signature" value="{{.Signature}}">
+                    <input type="hidden" name="public_key" value="{{.Public_key}}">
+                    <input type="hidden" name="redirect" value="{{.Redirect}}">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button" type="submit">{{.Pp_name}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            {{else}}
+            <div class="container">
+                <p>No existing pre-authorized options! Add one below</p>
+                <br>
+            </div>
+            {{end}}
+            <h2 class="subtitle">Add a New Pre-authorised Payment Option</h2>
+            {{range .Preauth}}
+            <div class="container">
+                <form action="/v1/preauth" method="post">
+                    <input type="hidden" name="hash" value="{{.Hash}}">
+                    <input type="hidden" name="signature" value="{{.Signature}}">
+                    <input type="hidden" name="public_key" value="{{.Public_key}}">
+                    <input type="hidden" name="redirect" value="{{.Redirect}}">
+                    <input type="hidden" name="request_url" value="{{.Request_URL}}">
+                    <input type="hidden" name="pp_pk" value="{{.Pp_pk}}">
+                    <input type="hidden" name="user_id" value="{{.User_ID}}">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button" type="submit">{{.Pp_name}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            {{end}}
+        </div>
+        <div class="container">
+            <h2 class="subtitle">Other Payment Options</h2>
+            {{range .Onetime}}
+            <div class="container">
+                <form action="{{.Request_URL}}" method="post">
+                    <input type="hidden" name="hash" value="{{.Hash}}">
+                    <input type="hidden" name="signature" value="{{.Signature}}">
+                    <input type="hidden" name="public_key" value="{{.Public_key}}">
+                    <input type="hidden" name="redirect" value="{{.Redirect}}">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button" type="submit">{{.Pp_name}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            {{end}}
+        </div>
+        
+    </section>
+</body>
+</html>
