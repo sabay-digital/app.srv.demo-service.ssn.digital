@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Transaction Complete</h1>
+            <h2 class="subtitle">Transaction Hash</h2>
+            <a class="button is-link" href="https://explorer.master.ssn.digital/v1/payments/testing/{{.Hash}}">{{.Hash}}</a>
+            <p>Your transaction has been successfully processed. Please keep a copy of the transaction hash for your reference.</p>
+        </div>
+    </section>
+</body>
+</html>
